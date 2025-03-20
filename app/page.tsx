@@ -4,6 +4,7 @@ import Image from "next/image";
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
+import { HomePage } from './pages/homePage'
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -41,17 +42,21 @@ export default function Home() {
     setValue(newValue);
   };
 
+  const header = (
+    <Box className="header" sx={{ borderBottom: 1, borderColor: 'divider', backgroundColor: 'red', pl: '25%', pt: 2, pb: 2 }}>
+      <Tabs value={value} onChange={handleChange} sx={{ '& .MuiTabs-flexContainer': { gap: '4px' } }}>
+        <Tab label="Home" {...a11yProps(0)} />
+        <Tab label="Item Two" {...a11yProps(1)} />
+        <Tab label="Item Three" {...a11yProps(2)} />
+      </Tabs>
+    </Box>
+  );
+
   return (
     <div>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab label="Item One" {...a11yProps(0)} />
-          <Tab label="Item Two" {...a11yProps(1)} />
-          <Tab label="Item Three" {...a11yProps(2)} />
-        </Tabs>
-      </Box>
+      {header}
       <CustomTabPanel value={value} index={0}>
-        Item One
+        <HomePage />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
         Item Two
