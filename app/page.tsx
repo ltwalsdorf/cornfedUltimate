@@ -1,10 +1,8 @@
 'use client'
 import * as React from 'react';
-import Image from "next/image";
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Box from '@mui/material/Box';
-import { HomePage } from './pages/homePage'
+import { Box } from '@mui/material';
+import { HomePage } from './pages/homePage';
+import Header from './header';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -28,13 +26,6 @@ function CustomTabPanel(props: TabPanelProps) {
   );
 }
 
-function a11yProps(index: number) {
-  return {
-    id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
-  };
-}
-
 export default function Home() {
   const [value, setValue] = React.useState(0);
 
@@ -42,37 +33,9 @@ export default function Home() {
     setValue(newValue);
   };
 
-  const header = (
-    <>
-      <Image src="/Cornelius_new.png" width={50} height={50} className="absolute left-2 top-2" alt="Cornelius the Cornhusker" />
-      <Box className="header" sx={{ borderBottom: 1, borderColor: 'divider', backgroundColor: 'red', pl: '25%', pt: 2, pb: 2 }}>
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          sx={{
-            '& .MuiTabs-flexContainer': { gap: '4px' },
-            '& .MuiTab-root': {
-              color: 'white',              // Non-selected tab color
-            },
-            '& .Mui-selected': {
-              color: 'white !important',   // Selected tab color
-            },
-            '& .MuiTabs-indicator': {
-              backgroundColor: 'white',    // Indicator line color
-            },
-          }}
-        >
-          <Tab label="Home" {...a11yProps(0)} />
-          <Tab label="Item Two" {...a11yProps(1)} />
-          <Tab label="Item Three" {...a11yProps(2)} />
-        </Tabs>
-      </Box>
-    </>
-  );
-
   return (
     <div>
-      {header}
+      <Header value={value} onChange={handleChange} />
       <CustomTabPanel value={value} index={0}>
         <HomePage />
       </CustomTabPanel>
