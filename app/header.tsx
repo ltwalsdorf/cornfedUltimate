@@ -14,25 +14,43 @@ const Header = ({ value, onChange }: HeaderProps) => {
   });
 
   return (
-    <>
-      <Image
-        src="/Cornelius_new.png"
-        width={50}
-        height={50}
-        className="absolute left-2 top-2"
-        alt="Cornelius the Cornhusker"
-      />
+    <Box
+      className="header"
+      sx={{
+        borderBottom: 1,
+        borderColor: 'divider',
+        backgroundColor: 'red',
+        pt: 2,
+        pb: 2,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        px: '5%',
+      }}
+    >
+      {/* First Column: Image */}
+      <Box sx={{ flex: 1, display: 'flex', justifyContent: 'flex-start' }}>
+        <Image
+          src="/corneliusLogo.png"
+          width={80}
+          height={80}
+          alt="Cornelius the Cornhusker"
+        />
+      </Box>
+
+      {/* Second Column: Title and Tabs (Centered) */}
       <Box
-        className="header"
         sx={{
-          borderBottom: 1,
-          borderColor: 'divider',
-          backgroundColor: 'red',
-          pl: '25%',
-          pt: 2,
-          pb: 2,
+          flex: 'none',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          textAlign: 'center',
         }}
       >
+        <h1 className="text-3xl font-bold text-white mb-2">
+          Cornfed Ultimate Frisbee
+        </h1>
         <Tabs
           value={value}
           onChange={onChange}
@@ -54,7 +72,17 @@ const Header = ({ value, onChange }: HeaderProps) => {
           <Tab label="Item Three" {...a11yProps(2)} />
         </Tabs>
       </Box>
-    </>
+
+      {/* Third Column: Cornfed Logo */}
+      <Box sx={{ flex: 1, display: 'flex', justifyContent: 'flex-end' }}>
+        <Image
+          src="/cornfedLogo.png"
+          width={120}
+          height={120}
+          alt="Cornfed Ultimate Frisbee"
+        />
+      </Box>
+    </Box>
   );
 };
 
